@@ -1,0 +1,71 @@
+---
+const links = [
+  { href: '#inicio', label: 'Inicio' },
+  { href: '#sobre-mi', label: 'Sobre mí' },
+  { href: '#proyectos', label: 'Proyectos' },
+  { href: '#contacto', label: 'Contacto' },
+];
+---
+
+<header class="sticky top-0 z-50 border-b border-line bg-bg/90 backdrop-blur">
+  <nav
+    aria-label="Principal"
+    class="mx-auto flex max-w-5xl flex-wrap items-center justify-between px-4 py-3"
+  >
+    <a
+      href="#inicio"
+      class="font-semibold tracking-tight focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+    >
+      Lara Pollastrini
+    </a>
+
+    <button
+      id="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="menu"
+      aria-label="Abrir menú"
+      class="rounded border border-line px-3 py-2 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:hidden"
+    >
+      Menú
+    </button>
+
+    <ul
+      id="menu"
+      class="hidden w-full flex-col gap-1 pt-3 md:flex md:w-auto md:flex-row md:gap-6 md:pt-0"
+    >
+      {
+        links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="block py-2 text-muted hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('menu');
+
+  function setOpen(open: boolean) {
+    toggle?.setAttribute('aria-expanded', String(open));
+    toggle?.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    menu?.classList.toggle('hidden', !open);
+  }
+
+  toggle?.addEventListener('click', () => {
+    setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  // En mobile, el menú se cierra al elegir una sección
+  menu?.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => setOpen(false));
+  });
+</script>
