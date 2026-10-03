@@ -1,43 +1,70 @@
-# Astro Starter Kit: Minimal
+# Portfolio de Lara Pollastrini
 
-```sh
-npm create astro@latest -- --template minimal
+Portfolio personal de desarrolladora web full stack. Presenta mi perfil, mis habilidades, mis proyectos y mis datos de contacto.
+
+**Sitio publicado:** _(se completa después del deploy)_
+
+## Stack
+
+- [Astro](https://astro.build/): sitio estático con HTML semántico
+- [Tailwind CSS](https://tailwindcss.com/): estilos y diseño responsive
+- JavaScript
+
+## Secciones
+
+- **Hero:** nombre, rol, frase de presentación, botones de acción y foto
+- **Sobre mí:** bio y habilidades agrupadas por categoría (Frontend, Backend y Herramientas)
+- **Proyectos:** Futbolle, BarApp (frontend) y BarApp Server (backend)
+- **Contacto:** email, GitHub y LinkedIn
+- **Navegación:** navbar fija con menú desplegable en mobile
+
+## Cómo correrlo localmente
+
+Requisitos: [Node.js](https://nodejs.org/) (versión LTS reciente) y npm.
+
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/LaruuPollastrini/NOMBRE-DEL-REPO.git
+cd NOMBRE-DEL-REPO
+
+# 2. Instalar dependencias
+npm install
+
+# 3. Levantar el servidor de desarrollo
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Después abrí [http://localhost:4321](http://localhost:4321) en el navegador.
 
-## 🚀 Project Structure
+### Otros comandos
 
-Inside of your Astro project, you'll see the following folders and files:
+| Comando           | Qué hace                                      |
+| ----------------- | --------------------------------------------- |
+| `npm run dev`     | Servidor de desarrollo en `localhost:4321`    |
+| `npm run build`   | Genera el sitio final en la carpeta `dist/`   |
+| `npm run preview` | Previsualiza localmente el build de producción |
+
+## Estructura del proyecto
 
 ```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+src/
+  components/   Header, Hero, About, Projects, Contact y Footer
+  data/         skills.js y projects.js (contenido del sitio)
+  layouts/      Layout.astro (estructura HTML base)
+  pages/        index.astro (página principal)
+  styles/       global.css (Tailwind y paleta de colores)
+public/         avatar.webp
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Decisiones de diseño
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- Paleta de tonos tierra y beige, con contraste legible.
+- HTML semántico (`header`, `nav`, `main`, `section`, `footer`) y un solo `h1`.
+- Accesibilidad: `alt` en las imágenes, foco visible al navegar con teclado y enlace para saltar al contenido.
+- Diseño responsive, verificado en 360 px, 768 px y 1280 px sin scroll horizontal.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Contacto
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Email: Pollastrini.laru@gmail.com
+- GitHub: [LaruuPollastrini](https://github.com/LaruuPollastrini)
+- LinkedIn: [Lara Pollastrini](https://www.linkedin.com/in/lara-pollastrini-0a0956207/)
