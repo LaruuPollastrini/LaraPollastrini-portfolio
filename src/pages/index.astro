@@ -1,17 +1,16 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout
+  title="Lara Pollastrini | Desarrolladora Web Full Stack"
+  description="Portfolio de Lara Pollastrini, desarrolladora web full stack y estudiante de Ingeniería en Sistemas Informáticos."
+>
+  <section class="mx-auto max-w-5xl px-4 py-16">
+    <h1 class="text-4xl font-semibold">Lara Pollastrini</h1>
+    <p class="mt-4 text-muted">Desarrolladora Web Full Stack</p>
+    <a href="#proyectos" class="mt-6 inline-block rounded border border-accent px-4 py-2 text-accent">
+      Ver proyectos
+    </a>
+  </section>
+</Layout>

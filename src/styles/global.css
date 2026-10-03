@@ -1,1 +1,44 @@
 @import "tailwindcss";
+
+/* El modo oscuro se activa agregando la clase "dark" al <html> */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Modo claro */
+:root {
+  --bg: #f7f1e8;
+  --surface: #efe5d6;
+  --text: #2b2118;
+  --muted: #6b5a4a;
+  --accent: #9a4a2e;
+  --border: #d9c9b3;
+}
+
+/* Modo oscuro */
+.dark {
+  --bg: #1e1712;
+  --surface: #2a211a;
+  --text: #f0e6d8;
+  --muted: #c9b8a3;
+  --accent: #d9a07a;
+  --border: #4a3b2e;
+}
+
+/* Conecta las variables con las clases de Tailwind */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-line: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
