@@ -1,0 +1,32 @@
+---
+import { skills } from '../data/skills.js';
+---
+
+<section
+  id="sobre-mi"
+  aria-labelledby="sobre-mi-titulo"
+  class="mx-auto max-w-5xl px-4 py-16 md:py-24"
+>
+  <h2 id="sobre-mi-titulo" class="text-3xl font-semibold">Sobre mí</h2>
+
+  <p class="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
+    Soy estudiante de 4° año de Ingeniería en Sistemas Informáticos en la UAI (Rosario).
+    Mi base en gestión empresarial y procesos de negocio me ayuda a entender qué necesita
+    una organización antes de escribir código. Desarrollo tanto interfaces web como APIs,
+    y disfruto aprender tecnologías nuevas y trabajar en equipo. Busco mi primera
+    experiencia profesional como desarrolladora.
+  </p>
+
+  <h3 class="mt-12 text-xl font-semibold">Habilidades y tecnologías</h3>
+
+  <dl class="mt-6 max-w-3xl">
+    {
+      skills.map((group) => (
+        <div class="grid gap-1 py-3 md:grid-cols-[10rem_1fr] md:gap-6">
+          <dt class="font-medium text-accent">{group.category}</dt>
+          <dd>{group.items.join(', ')}</dd>
+        </div>
+      ))
+    }
+  </dl>
+</section>
