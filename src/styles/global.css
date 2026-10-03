@@ -47,3 +47,18 @@ html {
   scroll-padding-top: 4.5rem;
 }
 }
+/* Animación de entrada de las secciones (solo si el sistema no pide menos movimiento) */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s ease;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
