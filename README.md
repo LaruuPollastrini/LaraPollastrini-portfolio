@@ -24,8 +24,8 @@ Requisitos: [Node.js](https://nodejs.org/) (versión LTS reciente) y npm.
 
 ```bash
 # 1. Clonar el repositorio
-git clone https://github.com/LaruuPollastrini/NOMBRE-DEL-REPO.git
-cd NOMBRE-DEL-REPO
+git clone https://github.com/LaruuPollastrini/LaraPollastrini-portfolio.git
+cd LaraPollastrini-portfolio
 
 # 2. Instalar dependencias
 npm install
