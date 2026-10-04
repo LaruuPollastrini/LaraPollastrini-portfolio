@@ -2,7 +2,7 @@
 
 Portfolio personal de desarrolladora web full stack. Presenta mi perfil, mis habilidades, mis proyectos y mis datos de contacto.
 
-**Sitio publicado:** _(se completa después del deploy)_
+**Sitio publicado:** lara-pollastrini-portfolio.vercel.app
 
 ## Stack
 
