@@ -1,5 +1,17 @@
 ---
 import { projects } from '../data/projects.js';
+
+// Futbolle: cada fila se acerca más a la respuesta
+const grid = [
+  ['miss', 'hit', 'miss', 'near', 'near', 'near'],
+  ['hit', 'miss', 'hit', 'near', 'near', 'near'],
+  ['hit', 'hit', 'hit', 'hit', 'hit', 'hit'],
+];
+const cellStyle: Record<string, string> = {
+  hit: 'bg-accent',
+  near: 'bg-accent/40',
+  miss: 'bg-line',
+};
 ---
 
 <section
@@ -7,40 +19,115 @@ import { projects } from '../data/projects.js';
   aria-labelledby="proyectos-titulo"
   class="mx-auto max-w-5xl px-4 py-12 md:py-16"
 >
-  <h2 id="proyectos-titulo" class="text-3xl font-semibold">Proyectos</h2>
+  <h2
+    id="proyectos-titulo"
+    class="text-sm font-medium uppercase tracking-widest text-accent"
+  >
+    Proyectos
+  </h2>
+  <p class="mt-3 max-w-2xl text-3xl font-semibold leading-tight md:text-4xl">
+    De la idea a una aplicación.
+  </p>
 
-  <ul class="mt-8 max-w-3xl space-y-12">
+  <ul class="mt-10 space-y-6">
     {
-      projects.map((project) => (
-        <li>
-          <h3 class="text-xl font-semibold">{project.title}</h3>
-          <p class="mt-3 leading-relaxed text-muted">{project.description}</p>
-          <p class="mt-3 text-sm">
-            <span class="font-medium text-accent">Tecnologías: </span>
-            {project.technologies.join(', ')}
-          </p>
-          <p class="mt-4 flex flex-wrap gap-x-6 gap-y-2">
-            {project.demo && (
+      projects.map((project, index) => (
+        <li class="grid gap-6 rounded-lg border border-line bg-surface p-5 motion-safe:transition-colors hover:border-accent/60 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:p-6">
+          <div
+            aria-hidden="true"
+            class="flex min-h-44 items-center justify-center rounded-md border border-line bg-bg p-6"
+          >
+            {project.visual === 'grid' && (
+              <div class="grid w-full max-w-xs gap-2">
+                {grid.map((row) => (
+                  <div class="grid grid-cols-6 gap-2">
+                    {row.map((cell) => (
+                      <div class={`aspect-square rounded ${cellStyle[cell]}`} />
+                    ))}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {project.visual === 'interface' && (
+              <div class="flex w-full max-w-xs gap-4">
+                <div class="w-1/4 space-y-2">
+                  <div class="h-2 rounded bg-accent" />
+                  <div class="h-2 rounded bg-line" />
+                  <div class="h-2 rounded bg-line" />
+                  <div class="h-2 rounded bg-line" />
+                </div>
+                <div class="flex-1 space-y-3">
+                  {[0, 1, 2, 3].map((row) => (
+                    <div class="flex items-center justify-between gap-3">
+                      <div class={`h-2 rounded bg-line ${row % 2 === 0 ? 'w-1/2' : 'w-2/5'}`} />
+                      <div class="h-3 w-10 rounded-full bg-accent/50" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {project.visual === 'architecture' && (
+              <div class="flex w-full max-w-xs items-center justify-between text-xs text-muted">
+                <div class="rounded border border-line px-3 py-2">React</div>
+                <div class="h-px flex-1 bg-accent" />
+                <div class="rounded border border-accent px-3 py-2 text-accent">NestJS</div>
+                <div class="h-px flex-1 bg-accent" />
+                <div class="rounded border border-line px-3 py-2">MySQL</div>
+              </div>
+            )}
+          </div>
+
+          <div>
+            <p class="text-xs uppercase tracking-widest text-muted">
+              <span class="font-semibold text-accent">
+                P-{String(index + 1).padStart(2, '0')}
+              </span>
+              {' · '}
+              {project.kind}
+            </p>
+            <h3 class="mt-2 text-2xl font-semibold md:text-3xl">{project.title}</h3>
+            <p class="mt-3 leading-relaxed text-muted">{project.description}</p>
+
+            <ul class="mt-4 space-y-2">
+              {project.highlights.map((item) => (
+                <li class="flex gap-3">
+                  <span class="mt-3 h-px w-4 shrink-0 bg-accent" aria-hidden="true" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            <ul class="mt-5 flex flex-wrap gap-2" aria-label={`Tecnologías de ${project.title}`}>
+              {project.technologies.map((tech) => (
+                <li class="rounded-md border border-line bg-bg px-2.5 py-1 text-sm">{tech}</li>
+              ))}
+            </ul>
+
+            <p class="mt-6 flex flex-wrap gap-3">
+              {project.demo && (
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Ver demo de ${project.title} (se abre en una pestaña nueva)`}
+                  class="rounded border border-accent bg-accent px-4 py-2 text-sm font-medium text-bg hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                >
+                  Ver demo ↗
+                </a>
+              )}
               <a
-                href={project.demo}
+                href={project.repo}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`Ver demo de ${project.title} (se abre en una pestaña nueva)`}
-                class="font-medium text-accent underline underline-offset-4 hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                aria-label={`Ver código de ${project.title} en GitHub (se abre en una pestaña nueva)`}
+                class="rounded border border-accent px-4 py-2 text-sm font-medium text-accent hover:bg-bg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
               >
-                Ver demo
+                Ver código ↗
               </a>
-            )}
-            <a
-              href={project.repo}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Ver código de ${project.title} en GitHub (se abre en una pestaña nueva)`}
-              class="font-medium text-accent underline underline-offset-4 hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-            >
-              Ver código
-            </a>
-          </p>
+            </p>
+          </div>
         </li>
       ))
     }
