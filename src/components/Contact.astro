@@ -1,4 +1,18 @@
 ---
+const email = 'Pollastrini.laru@gmail.com';
+
+const contacts = [
+  {
+    label: 'GitHub',
+    value: 'github.com/LaruuPollastrini',
+    href: 'https://github.com/LaruuPollastrini',
+  },
+  {
+    label: 'LinkedIn',
+    value: 'linkedin.com/in/lara-pollastrini',
+    href: 'https://www.linkedin.com/in/lara-pollastrini-0a0956207/',
+  },
+];
 ---
 
 <section
@@ -6,49 +20,100 @@
   aria-labelledby="contacto-titulo"
   class="mx-auto max-w-5xl px-4 py-12 md:py-16"
 >
-  <h2 id="contacto-titulo" class="text-3xl font-semibold">Contacto</h2>
+  <div class="grid gap-8 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:gap-12">
+    <div>
+      <h2
+        id="contacto-titulo"
+        class="text-sm font-medium uppercase tracking-widest text-accent"
+      >
+        Contacto
+      </h2>
+      <p class="mt-3 text-3xl font-semibold leading-tight md:text-4xl">Conectemos.</p>
+      <p class="mt-4 max-w-sm text-lg leading-relaxed text-muted">
+        Estoy disponible para conversar sobre oportunidades laborales y proyectos. Escribime
+        por el medio que prefieras.
+      </p>
+    </div>
 
-  <p class="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
-    Estoy disponible para conversar sobre oportunidades laborales y proyectos.
-  </p>
+    <div>
+      <ul class="space-y-3">
+        <li
+          class="group flex items-stretch rounded-lg border border-line bg-surface motion-safe:transition-colors hover:border-accent/60"
+        >
+          <a
+            href={`mailto:${email}`}
+            class="flex min-w-0 flex-1 items-center justify-between gap-4 rounded-l-lg p-5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          >
+            <span class="min-w-0">
+              <span class="block text-xs uppercase tracking-widest text-muted">Email</span>
+              <span class="mt-1 block break-all font-medium">{email}</span>
+            </span>
+            <span
+              aria-hidden="true"
+              class="text-accent motion-safe:transition-transform group-hover:translate-x-1"
+            >
+              →
+            </span>
+          </a>
+          <button
+            id="copy-email"
+            type="button"
+            data-email={email}
+            class="rounded-r-lg border-l border-line px-4 text-sm font-medium text-accent hover:bg-bg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          >
+            Copiar
+          </button>
+        </li>
 
-  <dl class="mt-8 max-w-3xl">
-    <div class="grid gap-1 py-3 md:grid-cols-[10rem_1fr] md:gap-6">
-      <dt class="font-medium text-accent">Email</dt>
-      <dd>
-        <a
-          href="mailto:Pollastrini.laru@gmail.com"
-          class="underline underline-offset-4 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-        >
-          Pollastrini.laru@gmail.com
-        </a>
-      </dd>
+        {
+          contacts.map((contact) => (
+            <li class="group rounded-lg border border-line bg-surface motion-safe:transition-colors hover:border-accent/60">
+              <a
+                href={contact.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${contact.label}: ${contact.value} (se abre en una pestaña nueva)`}
+                class="flex items-center justify-between gap-4 rounded-lg p-5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              >
+                <span class="min-w-0">
+                  <span class="block text-xs uppercase tracking-widest text-muted">
+                    {contact.label}
+                  </span>
+                  <span class="mt-1 block break-all font-medium">{contact.value}</span>
+                </span>
+                <span
+                  aria-hidden="true"
+                  class="text-accent motion-safe:transition-transform group-hover:translate-x-1"
+                >
+                  ↗
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <p id="copy-status" role="status" aria-live="polite" class="mt-3 min-h-5 text-sm text-muted"></p>
     </div>
-    <div class="grid gap-1 py-3 md:grid-cols-[10rem_1fr] md:gap-6">
-      <dt class="font-medium text-accent">GitHub</dt>
-      <dd>
-        <a
-          href="https://github.com/LaruuPollastrini"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="underline underline-offset-4 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-        >
-          github.com/LaruuPollastrini
-        </a>
-      </dd>
-    </div>
-    <div class="grid gap-1 py-3 md:grid-cols-[10rem_1fr] md:gap-6">
-      <dt class="font-medium text-accent">LinkedIn</dt>
-      <dd>
-        <a
-          href="https://www.linkedin.com/in/lara-pollastrini-0a0956207/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="underline underline-offset-4 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-        >
-          linkedin.com/in/lara-pollastrini
-        </a>
-      </dd>
-    </div>
-  </dl>
+  </div>
 </section>
+
+<script>
+  const button = document.getElementById('copy-email');
+  const status = document.getElementById('copy-status');
+
+  button?.addEventListener('click', async () => {
+    const email = button.getAttribute('data-email') ?? '';
+    try {
+      await navigator.clipboard.writeText(email);
+      if (status) status.textContent = 'Email copiado al portapapeles.';
+      button.textContent = 'Copiado';
+    } catch {
+      if (status) status.textContent = 'No se pudo copiar. Podés seleccionar el email y copiarlo a mano.';
+    }
+    setTimeout(() => {
+      button.textContent = 'Copiar';
+      if (status) status.textContent = '';
+    }, 2500);
+  });
+</script>
