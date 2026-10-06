@@ -34,7 +34,7 @@ export const projects = [
     description:
       'API REST del módulo de seguridad de BarApp, con arquitectura modular.',
     highlights: [
-      'Backend que consume la interfaz de BarApp',
+      'API que utiliza la interfaz de BarApp',
       'Persistencia en una base de datos MySQL',
     ],
     technologies: ['NestJS', 'TypeScript', 'Node.js', 'MySQL'],
