@@ -67,7 +67,7 @@ const links = [
 
     <ul
       id="menu"
-      class="hidden w-full flex-col gap-1 pt-3 md:flex md:w-auto md:flex-row md:gap-6 md:pt-0"
+        class="hidden w-full flex-col gap-1 pt-3 md:flex md:w-auto md:flex-row md:items-center md:gap-6 md:pt-0"
     >
       {
         links.map((link) => (
@@ -81,6 +81,15 @@ const links = [
           </li>
         ))
       }
+      <li>
+        <a
+          href="/CV.pdf"
+          download="CV-Lara-Pollastrini.pdf"
+          class="inline-block rounded border border-accent px-4 py-2 text-sm font-medium text-accent hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+        >
+          Descargar CV
+        </a>
+      </li>
     </ul>
   </nav>
 </header>
